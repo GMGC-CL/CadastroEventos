@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CadastroEventos.MainPage"             
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource C3}">
+
+    <ContentPage.BindingContext>
+        <models:Evento xmlns:models="clr-namespace:CadastroEventos.Models"/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="10" Spacing="5">
+        
+        <Label Text="Cadastro de Evento"
+            FontFamily ="CharmBold"
+            TextTransform="Uppercase"
+            FontSize="30"
+            TextColor="{StaticResource C2}" 
+            BackgroundColor="{StaticResource C3}"/>
+
+        <Frame Padding="10"
+            BackgroundColor="{StaticResource C3}"
+            BorderColor="{StaticResource C2}">
+            <VerticalStackLayout>
+                
+                <Frame Padding="10" Margin="10" 
+                    BackgroundColor="{StaticResource C2}">
+                    <VerticalStackLayout>
+
+                        <Label Text="Nome do Evento"
+                           FontFamily ="CharmBold"
+                           FontSize="Subtitle"
+                           TextColor="{StaticResource C3}"/>
+                        <Entry Text="{Binding Nome}" 
+                            TextColor="{StaticResource C3}"
+                            FontFamily ="Charm"
+                            Placeholder ="Digite o nome do evento"
+                            PlaceholderColor="{StaticResource C3}"/>
+                        
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Padding="10" Margin="10"
+                    BackgroundColor="{StaticResource C2}">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label Text="Período do Evento"
+                            FontFamily ="CharmBold"
+                            FontSize="Subtitle"
+                            TextColor="{StaticResource C3}"/>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Início:" FontFamily ="CharmBold"/>
+                            <HorizontalStackLayout Spacing="5">
+                                <DatePicker x:Name="dpInicio"
+                                            Date="{Binding DataInicio}" 
+                                            Format="dd/MM/yyyy" 
+                                            FontFamily ="Charm"/>
+                                <TimePicker x:Name="tpInicio"
+                                            Time="{Binding HoraInicio}"
+                                            Format="HH"
+                                            FontFamily ="Charm"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Término:" FontFamily ="CharmBold"/>
+                            <HorizontalStackLayout Spacing="10">
+                                <DatePicker x:Name="dpTermino"
+                                            Date="{Binding DataTermino}" 
+                                            Format="dd/MM/yyyy"
+                                            MinimumDate="{Binding Source={x:Reference dpInicio}, Path=Date}"
+                                            FontFamily ="Charm"/>
+                                <TimePicker x:Name="tpTermino"
+                                            Time="{Binding HoraTermino}" 
+                                            Format="HH"
+                                            FontFamily ="Charm"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Padding="10" Margin="10"
+                    BackgroundColor="{StaticResource C2}">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Número de Participantes"
+                            FontFamily ="CharmBold"
+                            FontSize="Subtitle"
+                            TextColor="{StaticResource C3}"/>
+                        <Entry Text="{Binding NumeroParticipantes}" 
+                            Keyboard="Numeric" 
+                            Placeholder="Digite o número de participantes"
+                            FontFamily ="Charm"/>
+
+                        <Label Text="Local do Evento"
+                            FontFamily ="CharmBold"
+                            FontSize="Subtitle"
+                            TextColor="{StaticResource C3}"/>
+                        <Entry Text="{Binding Local}" 
+                            FontFamily ="Charm"
+                            Placeholder ="Digite o local do evento"
+                            PlaceholderColor="{StaticResource C3}"/>
+
+                        <Label Text="Custo por Participante"
+                            FontFamily ="CharmBold"
+                            FontSize="Subtitle"
+                            TextColor="{StaticResource C3}"/>
+                        <Entry Text="{Binding CustoPorParticipante}" 
+                            Keyboard="Numeric" 
+                            Placeholder="Digite o custo por participante"
+                            FontFamily ="Charm"/>
+
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Button Text="Cadastrar Evento" 
+                    Clicked="Button_Clicked"
+                    FontFamily ="CharmBold"
+                    FontSize="20"
+                    TextColor="{StaticResource C3}"
+                    BackgroundColor="{StaticResource C1}"/>
+
+            </VerticalStackLayout>
+        </Frame>
+
+    </VerticalStackLayout>
+
+
+</ContentPage>
